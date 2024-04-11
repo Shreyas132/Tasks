@@ -1,0 +1,18 @@
+{
+  "tasks": [
+    {
+      "id": "2",
+      "text": "ABCD",
+      "where": "ind",
+      "day": "tuesday",
+      "reminder": true
+    },
+    {
+      "id": "3",
+      "text": "friday",
+      "where": "ind",
+      "day": "saturday",
+      "reminder": true
+    }
+  ]
+}
