@@ -8,21 +8,26 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background-image: url("C:\Users\shrey\Downloads\dark2.jpg") ;
+  /* background-image: url("C:\Users\shrey\Downloads\dark2.jpg") ; */
+  background-color: grey;
 
 }
 
 .box {
-  max-width: 500px;
+  max-width: 100%;
   margin: 30px auto;
   overflow: auto;
   min-height: 300px;
-  border: 1px solid rgb(89, 99, 107);
+  /* border: 1px solid rgb(89, 99, 107); */
   padding: 30px;
   border-radius: 5px;
   backdrop-filter: blur(5px);
+  display: block;
 
   
+}
+.task-parent{
+  display: inline-flex;
 }
 
 .headr {
@@ -44,7 +49,7 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
-  transition: transform 2s all;
+  transition: all 0.3s ease;
 }
 
 
@@ -59,21 +64,38 @@ body {
 
 .btn-block {
   display: block;
-  width: 100%;
+  width: 20%;
+  margin-left: 40%;
 }
 
 .task {
-  border: solid grey 0.5px;
+  border: solid black 0.1px;
+  width: 200px;
+  height: 100px;
   margin: 5px;
+  text-align: justify;
   padding: 10px 20px;
   cursor: pointer;
   backdrop-filter: blur(10px);
   border-radius: 5px;
+  transition: transform 0.3s ease;
+  border-radius: 5px;
+}
+.task:hover{
+  transform: scale(1.05);
+  transform-origin: center;
 }
 
 .task.reminder {
-  border-left: 5px solid green;
+  transition: all 0.3s linear;
+  border-top: 5px solid green;
+  background-color: blueviolet;
+  color: white;
 }
+.task.reminder:hover{
+  transform: scale(1.05);
+}
+
 
 .task h3 {
   display: flex;
@@ -83,11 +105,19 @@ body {
 
 .add-form {
   margin-bottom: 40px;
+  max-height: 50%;
+  max-width: 100%;
+  transition: max-height 1s ease;
 
 }
 
 .form-control {
   margin: 20px 0;
+  display: inline-block;
+  width: 50%;
+  justify-content: center;
+  padding: 3px;
+
 }
 .form-control label {
   display: block;
@@ -100,7 +130,6 @@ body {
   padding: 3px 7px;
   font-size: 17px;
   border-radius: 5px;
-  background-color: transparent;
 }
 
 .form-control-check {

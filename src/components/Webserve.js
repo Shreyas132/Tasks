@@ -1,11 +1,9 @@
 import { useState, useEffect } from "react"
-import Header from "./components/Header";
-import Tasks from "./components/Tasks";
-import AddTask from "./components/AddTask";
-import Footer from "./Footer";
-// import Webserve from "./components/Webserve";
+import Header from "./Header";
+import Tasks from "./Tasks";
+import AddTask from "./AddTask";
 
-const App = ()=> {
+const Webserve = ()=> {
   const[showAddTask,setshowAddTask] = useState(false)
   const [tasks,setTask] = useState([])
 
@@ -20,7 +18,7 @@ const App = ()=> {
 
   //fetch tasks
   const fetchtasks = async () =>{
-    const response = await fetch('http://localhost:5000/tasks')
+    const response = await fetch('https://my-json-server.typicode.com/Shreyas132/Server/tasks')
     const data = await response.json()
 
     return data
@@ -31,7 +29,7 @@ const App = ()=> {
     /*const id = Math.floor(Math.random() * 1000) +1*/
    /* const newTask = {id, ...task}*/
     /*setTask([...tasks,newTask])*/
-    const response = await fetch('http://localhost:5000/tasks',{
+    const response = await fetch('https://my-json-server.typicode.com/Shreyas132/Server/tasks',{
       method: 'POST',
       headers:{
         'Content-type' : 'application/json',
@@ -45,22 +43,20 @@ const App = ()=> {
   }
 
   const deleteTask = async (id) =>{
-    await fetch(`http://localhost:5000/tasks/${id}`,{method: 'DELETE',})
+    await fetch(`https://my-json-server.typicode.com/Shreyas132/Server/tasks/${id}`,{method: 'DELETE',})
 
     setTask(tasks.filter((task) => task.id !== id ))
   }
-
-  const deleted = setTask(tasks.filter((task) => task.id !== id))
    
   const fetchtask = async (id) =>{
-    const response = await fetch(`http://localhost:5000/tasks/${id}`)
+    const response = await fetch(`https://my-json-server.typicode.com/Shreyas132/Server/tasks/${id}`)
     const data = await response.json()
     return data
   }
   const toggleReminder = async (id) => {
     const taskreminder = await fetchtask(id)
     const updatedtask = {...taskreminder, reminder: !taskreminder.reminder}
-    const response = await fetch(`http://localhost:5000/tasks/${id}`,{
+    const response = await fetch(`https://my-json-server.typicode.com/Shreyas132/Server/tasks/${id}`,{
       method:'PUT',
       headers:{
         'Content-type':'application/json'
@@ -74,18 +70,15 @@ const App = ()=> {
 
   return (
     <div className="box">
-      {/* <Webserve /> */}
       <Header   onAdd = {() => setshowAddTask (!showAddTask)}
       showAdd={showAddTask} />
       {showAddTask && <AddTask onAdd = { addTask }   />}
       {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask}  onToggle={toggleReminder} />) : ("No Tasks")}
-      
-      <Footer />
 
       
     </div>
   );
 }
 
-export default App;
+export default Webserve;
  

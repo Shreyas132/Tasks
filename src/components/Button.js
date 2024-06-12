@@ -1,10 +1,9 @@
-import PropTypes from 'prop-types'
-import React from 'react'
+import PropTypes from 'prop-types';
+import React from 'react';
 
 export const Button = ({color,text,onClick}) => {
   return (
-    <button onClick={onClick}
-    style={{background:color}}className="btn">
+    <button onClick={onClick} style={{background:color}}className="btn">
       {text}
     </button>
     
