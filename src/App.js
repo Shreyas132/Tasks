@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import Tasks from "./components/Tasks";
 import AddTask from "./components/AddTask";
 import Footer from "./Footer";
-// import Webserve from "./components/Webserve";
+import Webserve from "./components/Webserve";
 
 const App = ()=> {
   const[showAddTask,setshowAddTask] = useState(false)
@@ -25,6 +25,12 @@ const App = ()=> {
 
     return data
   }
+  const fetchtask = async (id) =>{
+    const response = await fetch(`http://localhost:5000/tasks/${id}`)
+    const data = await response.json()
+    return data
+  }
+
 
 
   const addTask = async (task) =>{
@@ -50,13 +56,7 @@ const App = ()=> {
     setTask(tasks.filter((task) => task.id !== id ))
   }
 
-  const deleted = setTask(tasks.filter((task) => task.id !== id))
    
-  const fetchtask = async (id) =>{
-    const response = await fetch(`http://localhost:5000/tasks/${id}`)
-    const data = await response.json()
-    return data
-  }
   const toggleReminder = async (id) => {
     const taskreminder = await fetchtask(id)
     const updatedtask = {...taskreminder, reminder: !taskreminder.reminder}
@@ -74,13 +74,12 @@ const App = ()=> {
 
   return (
     <div className="box">
-      {/* <Webserve /> */}
-      <Header   onAdd = {() => setshowAddTask (!showAddTask)}
-      showAdd={showAddTask} />
-      {showAddTask && <AddTask onAdd = { addTask }   />}
-      {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask}  onToggle={toggleReminder} />) : ("No Tasks")}
+      <Webserve />
+      {/* <Header   onAdd = {() => setshowAddTask (!showAddTask)}showAdd={showAddTask} />  */}
+      {/* {showAddTask && <AddTask onAdd = { addTask }   />}
+      {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask}  onToggle={toggleReminder} />) : ("No Tasks")}  */}
       
-      <Footer />
+       <Footer />
 
       
     </div>
